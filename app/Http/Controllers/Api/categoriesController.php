@@ -43,10 +43,10 @@ class categoriesController extends Controller
         }
         $category = category::create([
             'name' => $request->name,
-            'description' => $request->description,
+            'description' => $request->description ?? '',
             'file' => $path,
             'type' => $request->type,
-        ])->get(['name','description','type']);
+        ])->first(['name','description','type']);
 
         return response()->json([
             'status' => 200 ,
